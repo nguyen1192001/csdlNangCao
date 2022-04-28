@@ -1,0 +1,49 @@
+body{
+    overflow-x: hidden;
+}
+.body_col {
+    margin-top: 1rem;
+    background-color: #f6f7fa;
+}
+.navbar-collapse {
+   
+    flex-grow: inherit;
+  
+}
+.nav-item:hover{
+    background-color: #0d6efd;
+}
+.justify-content-center {
+    font-size: 80%;
+}
+li{
+    list-style: none;
+}
+
+.btn-success{
+    float: right;
+}
+.body_col{
+    position: relative;
+}
+.boxUpdate{
+    position: absolute;
+    display: flex;
+    background-color: antiquewhite;
+    padding: 1rem;
+    right: 0;
+    top: 100%;
+    display: none;
+}
+.boxAdd{
+    margin: 1rem;
+    padding: 1rem;
+    border: solid 1px;
+}
+.inputSubmit{
+    margin-top: 1rem;
+    margin-left: 90%;
+}
+.form-label{
+    font-size: 8px;
+}

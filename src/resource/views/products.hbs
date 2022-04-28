@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-3">
+        {{> sidebar }}
+
+    </div>
+    
+    <div class="col-9">
+        {{> header}}
+         <a href="/product/add" type="button" class="btn btn-success"></a>
+        <div class="body_col">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng nhập</th>
+                        <th scope="col">Số lượng bán</th>
+                        <th scope="col">Gía bán</th>
+                        <th scope="col">Đơn vị tính</th>
+                        <th scope="col">Tình trạng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     {{#each product}}
+                    <tr>
+                        <th scope="row">{{this.MaSP}}</th>
+                        <td class="p-3">{{this.TenSP}}</td>
+                        <td class="p-3">{{this.SoLuongNhap}}</td>
+                        <td class="p-3">{{this.SoLuongBan}}</td>
+                        <td class="p-3">{{this.GiaBan}}</td>
+                        <td class="p-3">{{this.DonViTinh}}</td>
+                        <td class="p-3">{{this.TinhTrang}}</td>
+                         <td>
+                            <a href="/product/delete/{{this.MaSP}}" type="button" class="btn btn-danger"></a>
+                            {{!-- <a href="" type="button" class="btn btn-danger" data-toggle="modal"
+                                data-id="{{this.MaNV}}" data-target="#delete-product-modal"></a> --}}
+                            {{!-- <button type="button" data-id={{this.MaNV}} class="btn btn-danger"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            </button> --}}
+                            <a type="button" class="btn btn-warning btnBoxUpdate"></a>
+                        </td>
+                    </tr>
+
+                    <div class="boxUpdate">
+                        <form action="/product/update/{{this.MaSP}}" method="Get">
+                        <div class="me-3">
+                            <label for="exampleFormControlInput1" class="form-label">Tên sản phẩm</label>
+                            <input type="text" name="tensp" value="{{this.TenSP}}" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div class="me-3">
+                            <label for="exampleFormControlInput1" class="form-label">số lượng nhập</label>
+                            <input type="text" name="soluongnhap" value="{{this.SoLuongNhap}}" class="form-control" id="exampleFormControlInput2">
+                        </div>
+                        <div class="me-3">
+                            <label for="exampleFormControlInput1" class="form-label">số lượng bán</label>
+                            <input type="text" name="soluongban" value="{{this.SoLuongBan}}" class="form-control" id="exampleFormControlInput3">
+                        </div>
+                         <div class="me-3">
+                            <label for="exampleFormControlInput1" class="form-label">giá bán</label>
+                            <input type="text" name="giaban" value="{{this.SoLuongBan}}" class="form-control" id="exampleFormControlInput3">
+                        </div>
+                        <div class="me-3">
+                            <label for="exampleFormControlInput1" class="form-label">đơn vị tính</label>
+                            <input type="text" name="donvitinh" value="{{this.DonViTinh}}" class="form-control" id="exampleFormControlInput4">
+                        </div>
+                        <div class="me-3">
+                            <label for="exampleFormControlInput1" class="form-label">tính trạng</label>
+                            <input type="text" name="tinhtrang" value="{{this.TinhTrang}}" class="form-control" id="exampleFormControlInput5">
+                        </div>
+                        <input  type="submit" class="btn btn-warning"/>
+                        </form>
+                    </div>
+                    {{/each}}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    const btnUpdateStaff = document.querySelectorAll('.btnBoxUpdate')
+ const boxUpdate = document.querySelectorAll('.boxUpdate')
+
+    btnUpdateStaff.forEach((item,index)=>{
+    item.onclick = () => {
+        if (boxUpdate[index].style.display == 'flex') {
+            boxUpdate[index].style.display = 'none'
+        } else {
+            boxUpdate[index].style.display = 'flex'
+        }
+    }
+    })
+    
+</script>

@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "bootstrap-icons": "^1.8.1",
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.5",
+    "jquery": "^3.6.0",
+    "jsdom": "^19.0.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "mssql": "^8.1.0",
+    "node-localstorage": "^2.2.1",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15"
+  },
+  "name": "quanlyshopmypham",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express-handlebars": "^6.0.0"
+  }
+}

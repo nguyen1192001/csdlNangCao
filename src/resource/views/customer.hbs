@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-3">
+        {{> sidebar }}
+
+    </div>
+    <div class="col-9">
+        {{> header}}
+        <a href="/customer/add" type="button" class="btn btn-success"></a>
+        <div class="body_col">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã khách hàng</th>
+                        <th scope="col">Tên khách hàng</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each customer}}
+                    <tr>
+                        <th scope="row">{{this.MaKH}}</th>
+                        <td class="p-3">{{this.TenKH}}</td>
+                        <td class="p-3">{{this.NgaySinh}}</td>
+                        <td class="p-3">{{this.DiaChi}}</td>
+                        <td class="p-3">{{this.GioiTinh}}</td>
+                        <td class="p-3">{{this.Email}}</td>
+                        <td>
+                            <a href="/customer/delete/{{this.MaSP}}" type="button" class="btn btn-danger"></a>
+                            {{!-- <a href="" type="button" class="btn btn-danger" data-toggle="modal"
+                                data-id="{{this.MaNV}}" data-target="#delete-product-modal"></a> --}}
+                            {{!-- <button type="button" data-id={{this.MaNV}} class="btn btn-danger"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            </button> --}}
+                            <a type="button" class="btn btn-warning btnBoxUpdate"></a>
+                        </td>
+                    </tr>
+                    <div class="boxUpdate">
+                        <form action="/customer/update/{{this.MaKH}}" method="Get">
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Tên khách hàng</label>
+                                <input type="text" name="tenkh" value={{this.TenKH}} class="form-control"
+                                    id="exampleFormControlInput1">
+                            </div>
+
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Ngày sinh</label>
+                                <input type="text" name="ngaysinh" value={{this.NgaySinh}} class="form-control"
+                                    id="exampleFormControlInput2">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
+                                <input type="text" name="diachi" value={{this.DiaChi}} class="form-control"
+                                    id="exampleFormControlInput2">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">giới tính</label>
+                                <select name="cars" id="cars">
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">email</label>
+                                <input type="text" name="email" value={{this.Email}} class="form-control"
+                                    id="exampleFormControlInput4">
+                            </div>
+                            <input type="submit" class="btn btn-warning" />
+                        </form>
+                    </div>
+                    {{/each}}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const btnUpdateStaff = document.querySelectorAll('.btnBoxUpdate')
+    const boxUpdate = document.querySelectorAll('.boxUpdate')
+
+    btnUpdateStaff.forEach((item, index) => {
+        item.onclick = () => {
+            if (boxUpdate[index].style.display == 'flex') {
+                boxUpdate[index].style.display = 'none'
+            } else {
+                boxUpdate[index].style.display = 'flex'
+            }
+        }
+    })
+
+
+</script>

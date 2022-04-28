@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-3">
+        {{> sidebar }}
+
+    </div>
+    <div class="col-9">
+        {{> header}}
+        <a onclick={openModalAdd()} type="button" class="btn btn-success"></a>
+        <div class="body_col">
+
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã Nhân Viên</th>
+                        <th scope="col">Tên Nhân Viên</th>
+                        <th scope="col">Ngày Sinh</th>
+                        <th scope="col">Địa Chỉ</th>
+                        <th scope="col">Sđt</th>
+                        <th scope="col">CMND</th>
+                        <th scope="col">Ngày Bắt Đầu Làm</th>
+                        <th scope="col">Giới Tính</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each staff}}
+                    <tr>
+                        <th scope="row">{{this.MaNV}}</th>
+                        <td class="p-3">{{this.Tennv}}</td>
+                        <td class="p-3">{{this.NgaySinh}}</td>
+                        <td class="p-3">{{this.DiaChi}}</td>
+                        <td class="p-3">{{this.SDT}}</td>
+                        <td class="p-3">{{this.CMTND}}</td>
+                        <td class="p-3">{{this.NgayBDLamViec}}</td>
+                        <td>{{this.GioiTinh}}</td>
+                        <td>
+                            <a onclick={deleteStaff(`{{this.MaNV}}`)} type="button" class="btn btn-danger"></a>
+                            {{!-- <a href="" type="button" class="btn btn-danger" data-toggle="modal"
+                                data-id="{{this.MaNV}}" data-target="#delete-product-modal"></a> --}}
+                            {{!-- <button type="button" data-id={{this.MaNV}} class="btn btn-danger"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            </button> --}}
+                            <a type="button" class="btn btn-warning btnBoxUpdate"></a>
+                        </td>
+                    </tr>
+
+                    <div class="boxUpdate">
+                        <form  id="formActionUpdate" method="Get">
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Tên nhân viên</label>
+                                <input type="text" name="tennv" value="{{this.Tennv}}" class="form-control"
+                                    id="exampleFormControlInput1">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Ngày sinh</label>
+                                <input type="text" name="ngaysinh" value="{{this.NgaySinh}}" class="form-control"
+                                    id="exampleFormControlInput2">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
+                                <input type="text" name="diachi" value="{{this.DiaChi}}" class="form-control"
+                                    id="exampleFormControlInput3">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">SĐT</label>
+                                <input type="text" name="sdt" value="{{this.SDT}}" class="form-control"
+                                    id="exampleFormControlInput4">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">cmnd</label>
+                                <input type="text" name="cmtnd" value="{{this.CMTND}}" class="form-control"
+                                    id="exampleFormControlInput5">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">Ngày bđ làm</label>
+                                <input type="text" name="ngaylv" value="{{this.NgayBDLamViec}}" class="form-control"
+                                    id="exampleFormControlInput6">
+                            </div>
+                            <div class="me-3">
+                                <label for="exampleFormControlInput1" class="form-label">giới tính</label>
+                                <select name="gioitinh" id="cars">
+                                    <option value={{this.GioiTinh}}>{{this.GioiTinh}}</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
+                            </div>
+                            <button onclick={alterActionForm(`{{this.MaNV}}`)}  class="btn btn-warning" >submit</button>
+                        </form>
+                    </div>
+
+                    {{/each}}
+                </tbody>
+
+
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{{!-- model --}}
+
+{{!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa nhân viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc sẽ xóa nhân viên này
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="staff/delete/" +{{this.MaNV}} type="button" class="btn btn-primary deleteStaff">Delete</a>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+<script>
+    const btnUpdateStaff = document.querySelectorAll('.btnBoxUpdate')
+    const boxUpdate = document.querySelectorAll('.boxUpdate')
+
+    const deleteStaff = (MaNV)=>{
+        let link = "http://localhost:4000/staff/delete"+"/"+MaNV+"/" + window.localStorage.getItem("server")
+        window.location.href = link;
+    }
+ 
+    const alterActionForm = (MaNV)=>{
+          let form = document.getElementById('formActionUpdate')
+                
+        let link = "http://localhost:4000/staff/update"+"/"+MaNV+"/" + window.localStorage.getItem("server")
+                form.action = link
+                form.submit()                
+                    console.log("doc form",form)
+    }
+
+    const openModalAdd = ()=>{
+        let link = "http://localhost:4000/staff/add"+"/" + window.localStorage.getItem("server")
+        window.location.href = link
+    }
+    btnUpdateStaff.forEach((item, index) => {
+        item.onclick = () => {
+            if (boxUpdate[index].style.display == 'flex') {
+                boxUpdate[index].style.display = 'none'
+                 
+            } else {
+                boxUpdate[index].style.display = 'flex'
+                
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-3">
+        {{> sidebar }}
+
+    </div>
+    <div class="col-9">
+        {{> header}}
+        <div class="body_col">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Mã khách hàng</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Ngày đặt hàng</th>
+                        <th scope="col">Ngày nhận hàng</th>
+                        <th scope="col">Phí giao hàng</th>
+                        <th scope="col">Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     {{#each oders}}
+                    <tr>
+                        <th scope="row">{{this.MaHD}}</th>
+                        <td class="p-3">{{this.MaKH}}</td>
+                        <td class="p-3">{{this.DiaChiNDH}}</td>
+                        <td class="p-3">{{this.NgayDH}}</td>
+                        <td class="p-3">{{this.NgayNH}}</td>
+                        <td class="p-3">{{this.PhiGH}}</td>
+                        <td class="p-3">{{this.TongTien}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>

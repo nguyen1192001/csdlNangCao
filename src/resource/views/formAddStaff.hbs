@@ -1,0 +1,66 @@
+<div class="boxAdd">
+    <h3>Thêm nhân viên</h3>
+    <form method="Get" id="formAddStaff">
+        <div class="me-3">
+            <label for="exampleFormControlInput1" class="form-label">Tên nhân viên</label>
+            <input type="text" name="tennv" value="" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="me-3">
+            <label for="exampleFormControlInput1" class="form-label">Ngày sinh</label>
+            <input type="text" name="ngaysinh" value="" class="form-control" id="exampleFormControlInput2">
+        </div>
+        <div class="me-3">
+            <label for="exampleFormControlInput1" class="form-label">Địa chỉ</label>
+            <input type="text" name="diachi" value="" class="form-control" id="exampleFormControlInput3">
+        </div>
+        <div class="me-3">
+            <label for="exampleFormControlInput1" class="form-label">SĐT</label>
+            <input type="text" name="sdt" value="" class="form-control" id="exampleFormControlInput4">
+        </div>
+        <div class="me-3">
+            <label for="exampleFormControlInput1" class="form-label">cmnd</label>
+            <input type="text" name="cmtnd" value="" class="form-control" id="exampleFormControlInput5">
+        </div>
+        <div class="me-3">
+            <label for="exampleFormControlInput1" class="form-label">giới tính</label>
+            <li class="dropdown">
+                <input name="gioitinh" value="Nữ" class="nav-link dropdown-toggle dropdownArea" href="#"
+                    id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" />
+                <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Nam</a></li>
+                    <li><a class="dropdown-item" href="#">Nữ</a></li>
+                </ul>
+            </li>
+        </div>
+        <input onclick={ActionAddStaffForm()} type="submit" class="btn btn-warning inputSubmit" />
+    </form>
+</div>
+
+
+<script>
+    const tagdropdown = document.querySelector('.dropdownArea')
+    const dropmenu = document.querySelector('.dropdown-menu')
+    const ActionAddStaffForm = () => {
+        let form = document.getElementById('formAddStaff')
+
+        let link = "http://localhost:4000/staff/adddb" + "/" + window.localStorage.getItem("server")
+        form.action = link
+        form.submit()
+        console.log("doc form", form)
+    }
+    tagdropdown.onclick = () => {
+        if (dropmenu.style.display == 'block') {
+            dropmenu.style.display = 'none'
+        } else {
+            dropmenu.style.display = 'block'
+            const itemArea = document.querySelectorAll('.dropdown-item')
+            itemArea.forEach((item) => {
+                item.onclick = () => {
+                    tagdropdown.innerText = item.innerHTML
+                    dropmenu.style.display = 'none'
+                }
+            })
+        }
+    }
+
+</script>
